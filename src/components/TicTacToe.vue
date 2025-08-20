@@ -1,9 +1,13 @@
 <template>
   <div
-    class="flex items-center justify-center h-screen bg-gradient-to-br from-green-100 to-emerald-200"
+    class="p-12 flex items-center justify-center bg-gradient-to-br from-green-100 to-emerald-200"
   >
-    <div class="mx-4 bg-white p-6 rounded-xl shadow-lg max-w-md w-full animate-fade-in">
-      <h2 class="text-2xl font-bold text-center text-emerald-700 mb-4">Tic Tac Toe</h2>
+    <div
+      class="mx-4 bg-white p-6 rounded-xl shadow-lg max-w-md w-full animate-fade-in"
+    >
+      <h2 class="text-2xl font-bold text-center text-emerald-700 mb-4">
+        Tic Tac Toe
+      </h2>
       <div class="grid grid-cols-3 gap-2 mb-4">
         <button
           v-for="(cell, index) in board"
@@ -17,7 +21,7 @@
       </div>
 
       <p class="text-center text-2xl font-medium text-gray-700" v-if="winner">
-        {{ winner === 'Draw' ? 'Seri!' : `🎉 ${winner} Win!` }}
+        {{ winner === "Draw" ? "Seri!" : `🎉 ${winner} Win!` }}
       </p>
 
       <p class="text-center text-2xl font-semibold text-gray-600" v-else>
@@ -35,21 +39,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const board = ref(Array(9).fill(null))
-const currentPlayer = ref('X')
-const winner = ref(null)
+const board = ref(Array(9).fill(null));
+const currentPlayer = ref("X");
+const winner = ref(null);
 
 const makeMove = (index) => {
-  if (board.value[index] || winner.value) return
+  if (board.value[index] || winner.value) return;
 
-  board.value[index] = currentPlayer.value
-  checkWinner()
+  board.value[index] = currentPlayer.value;
+  checkWinner();
   if (!winner.value) {
-    currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
+    currentPlayer.value = currentPlayer.value === "X" ? "O" : "X";
   }
-}
+};
 
 const checkWinner = () => {
   const lines = [
@@ -61,24 +65,28 @@ const checkWinner = () => {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-  ]
+  ];
 
   for (const [a, b, c] of lines) {
-    if (board.value[a] && board.value[a] === board.value[b] && board.value[a] === board.value[c]) {
-      winner.value = board.value[a]
-      return
+    if (
+      board.value[a] &&
+      board.value[a] === board.value[b] &&
+      board.value[a] === board.value[c]
+    ) {
+      winner.value = board.value[a];
+      return;
     }
   }
   if (board.value.every((cell) => cell)) {
-    winner.value = 'Draw'
+    winner.value = "Draw";
   }
-}
+};
 
 const resetGame = () => {
-  board.value = Array(9).fill(null)
-  winner.value = null
-  currentPlayer.value = 'X'
-}
+  board.value = Array(9).fill(null);
+  winner.value = null;
+  currentPlayer.value = "X";
+};
 </script>
 
 <style>
