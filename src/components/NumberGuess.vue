@@ -6,10 +6,10 @@
       class="max-w-md mx-auto bg-white p-8 border rounded-2xl shadow-lg animaate-fade-in"
     >
       <h2 class="text-3xl font-extrabold text-indigo-700 mb-6 text-center">
-        Number Guessing Game
+        Guessing Number Game
       </h2>
-      <p class="text-sm text-gray-400 font-semibold mb-6">
-        Guess the number between 1 - 50. You have 10 chance to guess the right
+      <p class="text-lg text-gray-400 font-thin mb-6">
+        Guess the number between 1 - 50. You have 5 chance to guess the right
         number.
       </p>
       <form @submit.prevent="checkGuess" class="space-y-4">
@@ -27,23 +27,26 @@
       </form>
       <transition name="fade">
         <p
-          class="mt-6 text-center font-medium text-lg text-gray-700"
+          class="py-4 px-6 bg-gray-200 rounded-lg shadow-md mt-6 text-center font-medium text-lg text-gray-700"
           v-if="message"
         >
           {{ message }}
         </p>
       </transition>
-      <p class="text-sm text-gray-400 text-center">
+      <p class="text-sm text-gray-400 text-center mt-3">
         {{ guesses?.length }} from 5 guesses
       </p>
       <div v-if="guesses.length" class="mt-6">
         <h3 class="font-semibold mb-2 text-gray-600">Guess history:</h3>
-        <TransitionGroup
-          name="list"
-          tag="ul"
-          class="list-disc ml-4 text-gray-700"
-        >
-          <li v-for="(item, index) in guesses" :key="index">{{ item }}</li>
+        <TransitionGroup name="dice" class="list-disc ml-4 text-gray-700">
+          <div
+            v-for="(item, index) in guesses"
+            :key="index"
+            class="px-4 py-2 rounded-lg inline-block align-middle text-center m-1"
+            :style="{ backgroundColor: 'hsl(' + index * 40 + ', 85%, 85%)' }"
+          >
+            {{ item }}
+          </div>
         </TransitionGroup>
       </div>
       <div class="flex justify-end">
@@ -129,15 +132,17 @@ const resetGame = () => {
   opacity: 0;
 }
 
-.list-enter-from {
+.dice-enter-from {
   opacity: 0;
-  transform: translateY(-20px);
+  translate: 200px 0;
+  rotate: 360deg;
 }
-.list-enter-to {
+.dice-enter-to {
   opacity: 1;
-  transform: translateY(0);
+  translate: 0 0;
+  rotate: 0deg;
 }
-.list-enter-active {
-  transition: all 0.7s ease;
+.dice-enter-active {
+  transition: all 0.7s;
 }
 </style>

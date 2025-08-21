@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-12 flex items-center justify-center bg-gradient-to-br from-green-100 to-emerald-200"
+    class="py-12 flex items-center justify-center bg-gradient-to-br from-green-100 to-emerald-200"
   >
     <div
       class="mx-4 bg-white p-6 rounded-xl shadow-lg max-w-md w-full animate-fade-in"
@@ -21,18 +21,24 @@
       </div>
 
       <p class="text-center text-2xl font-medium text-gray-700" v-if="winner">
-        {{ winner === "Draw" ? "Seri!" : `🎉 ${winner} Win!` }}
+        {{
+          winner === "Draw"
+            ? "  Draw!"
+            : winner === "X"
+            ? "🎉 You Win!"
+            : "🎉 Ai Win!"
+        }}
       </p>
 
       <p class="text-center text-2xl font-semibold text-gray-600" v-else>
-        {{ currentPlayer }} turn
+        {{ currentPlayer === "X" ? "You" : "Ai" }} make move!
       </p>
 
       <button
         @click="resetGame"
         class="mt-4 block mx-auto text-emerald-600 hover:underline text-sm"
       >
-        Reset
+        Try Again
       </button>
     </div>
   </div>
@@ -48,11 +54,28 @@ const winner = ref(null);
 const makeMove = (index) => {
   if (board.value[index] || winner.value) return;
 
-  board.value[index] = currentPlayer.value;
+  board.value[index] = "X";
   checkWinner();
   if (!winner.value) {
-    currentPlayer.value = currentPlayer.value === "X" ? "O" : "X";
+    currentPlayer.value = "O";
+    setTimeout(() => aiMove(), 300);
   }
+};
+
+const aiMove = () => {
+  const emptyIndices = board.value
+    .map((cell, i) => (cell === null ? i : null))
+    .filter((i) => i !== null);
+
+  if (emptyIndices.length === 0) return;
+
+  const randomIndex =
+    emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+
+  board.value[randomIndex] = "O";
+  checkWinner();
+
+  if (!winner.value) currentPlayer.value = "X";
 };
 
 const checkWinner = () => {
@@ -88,6 +111,3 @@ const resetGame = () => {
   currentPlayer.value = "X";
 };
 </script>
-
-<style>
-</style>

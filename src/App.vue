@@ -7,22 +7,22 @@
     </h1>
     <div class="flex flex-row justify-between items-center gap-1 mt-8 mb-2">
       <button
-        class="bg-indigo-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-indigo-600 transition"
-        @click="showGame('quiz')"
+        class="bg-green-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-green-500 transition"
+        @click="showGame('tictactoe')"
       >
-        Quiz Game
+        Tic Tac Toe
       </button>
       <button
-        class="bg-indigo-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-indigo-600 transition"
+        class="bg-amber-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-amber-500 transition"
         @click="showGame('guess')"
       >
         Guess Number
       </button>
       <button
-        class="bg-indigo-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-indigo-600 transition"
-        @click="showGame('tictactoe')"
+        class="bg-red-700 text-white px-6 py-3 rounded-lg text-lg hover:bg-red-800 transition"
+        @click="showGame('quiz')"
       >
-        Tic Tac Toe
+        Quiz Game
       </button>
     </div>
     <hr class="my-2" />
