@@ -1,11 +1,11 @@
 
 
 <template>
-  <div class="max-w-xl md:max-w-md mx-auto px-2 py-8">
+  <div class="max-w-xl md:max-w-md mx-auto px-2">
     <h1 class="text-3xl font-extrabold text-center mt-8">
       Welcome to <span class="text-amber-500">'Game Land'</span>
     </h1>
-    <div class="flex flex-row justify-between items-center gap-1 mt-8 mb-2">
+    <div class="flex flex-row justify-between items-center gap-1 mt-3 mb-2">
       <button
         class="bg-green-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-green-500 transition"
         @click="showGame('tictactoe')"

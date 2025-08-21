@@ -1,19 +1,32 @@
 <template>
   <div
-    class="flex items-center justify-center p-12 bg-gradient-to-br from blue-100 to-indigo-200"
+    class="flex items-center justify-center p-2 bg-gradient-to-br from blue-100 to-indigo-200"
   >
     <div
+      ref="componentRef"
       class="max-w-md mx-auto bg-white p-8 border rounded-2xl shadow-lg animaate-fade-in"
     >
-      <h2 class="text-3xl font-extrabold text-indigo-700 mb-6 text-center">
+      <h2 class="text-3xl font-extrabold text-indigo-700 mb-2 text-center">
         Guessing Number Game
       </h2>
-      <p class="text-lg text-gray-400 font-thin mb-6">
+      <p class="text-md text-gray-400 font-thin mb-4">
         Guess the number between 1 - 50. You have 5 chance to guess the right
         number.
       </p>
+      <p class="text-sm text-gray-400 text-center my-2">
+        {{ guesses?.length }} from 5 guesses
+      </p>
+      <transition name="fade">
+        <p
+          class="py-4 px-6 mb-4 bg-gray-200 rounded-lg shadow-md mt-6 text-center font-medium text-lg text-gray-700"
+          v-if="message"
+        >
+          {{ message }}
+        </p>
+      </transition>
       <form @submit.prevent="checkGuess" class="space-y-4">
         <input
+          @focus="scrollToComponent"
           type="number"
           v-model.number="guess"
           class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-indigo-400 transition"
@@ -25,17 +38,7 @@
           Guess
         </button>
       </form>
-      <transition name="fade">
-        <p
-          class="py-4 px-6 bg-gray-200 rounded-lg shadow-md mt-6 text-center font-medium text-lg text-gray-700"
-          v-if="message"
-        >
-          {{ message }}
-        </p>
-      </transition>
-      <p class="text-sm text-gray-400 text-center mt-3">
-        {{ guesses?.length }} from 5 guesses
-      </p>
+
       <div v-if="guesses.length" class="mt-6">
         <h3 class="font-semibold mb-2 text-gray-600">Guess history:</h3>
         <TransitionGroup name="dice" class="list-disc ml-4 text-gray-700">
@@ -63,6 +66,8 @@
 
 <script setup>
 import { ref, computed, TransitionGroup } from "vue";
+
+const componentRef = ref(null);
 
 const generateNumber = () => {
   return Math.floor(Math.random() * 50) + 1;
@@ -103,6 +108,10 @@ const resetGame = () => {
   guess.value = "";
   guesses.value = [];
   message.value = "";
+};
+
+const scrollToComponent = () => {
+  componentRef.value?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 </script>
 
