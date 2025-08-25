@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex items-center justify-center p-2 bg-gradient-to-br from blue-100 to-indigo-200"
-  >
+  <div class="flex items-center justify-center p-2">
     <div
       ref="componentRef"
       class="max-w-md mx-auto bg-white p-8 border rounded-2xl shadow-lg animaate-fade-in"

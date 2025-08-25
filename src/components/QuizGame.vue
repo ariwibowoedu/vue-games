@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="p-12 flex items-center justify-center bg-gradient-to-br from-yellow-100 to-amber-200"
-  >
+  <div class="p-12 flex items-center justify-center">
     <div
-      class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full animate-fade-in"
+      class="bg-white p-6 rounded-2xl shadow-lg max-w-md w-full animate-fade-in"
     >
       <h2 class="text-2xl font-bold text-center text-amber-700 mb-4">
         🧠 Quiz Game

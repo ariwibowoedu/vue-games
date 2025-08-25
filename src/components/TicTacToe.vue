@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="py-12 flex items-center justify-center bg-gradient-to-br from-green-100 to-emerald-200"
-  >
+  <div class="py-12 flex items-center justify-center">
     <div
-      class="mx-4 bg-white p-6 rounded-xl shadow-lg max-w-md w-full animate-fade-in"
+      class="mx-4 bg-white p-6 rounded-2xl shadow-lg max-w-md w-full animate-fade-in"
     >
       <h2 class="text-2xl font-bold text-center text-emerald-700 mb-4">
         Tic Tac Toe
